@@ -22,6 +22,23 @@ class ProductController{
 
         return res.json(products);
     }
+
+    async aggregate(req, res){
+
+        const products = await Product.aggregate([
+            { $match : { $or: [{'nome' : new RegExp('0101', "i")}, {'codigo' : new RegExp('0101', "i")} ] } },
+            { $group:
+            {
+              _id: '$codigo', // Group By Expression
+              'nome':  {$first :'$nome'} ,
+              'codigo':  {$first :'$codigo'} ,
+              'saldo': { $sum : '$saldo' },
+            },
+            
+        }]);
+
+        return res.json(products);
+    }
 }
 
 module.exports = new ProductController();
