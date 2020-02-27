@@ -25,8 +25,10 @@ class ProductController{
 
     async aggregate(req, res){
 
+        const filter = req.body.filter.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+
         const products = await Product.aggregate([
-            { $match : { $or: [{'nome' : new RegExp('0101', "i")}, {'codigo' : new RegExp('0101', "i")} ] } },
+            { $match : { $or: [{'nome' : new RegExp(filter, "i")}, {'codigo' : new RegExp(filter, "i")} ] } },
             { $group:
             {
               _id: '$codigo', // Group By Expression

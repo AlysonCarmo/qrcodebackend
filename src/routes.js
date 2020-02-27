@@ -6,7 +6,7 @@ const ProductController = require("./controllers/ProductController");
 
 routes.get("/product/:id", ProductController.show);
 routes.post("/product", ProductController.store);
-routes.get("/products", ProductController.aggregate);
+routes.post("/products", ProductController.aggregate);
 
 
 module.exports = routes;
