@@ -14,13 +14,25 @@ const Product = new mongoose.Schema({
        type: String,
        required: true,
      },
-    imagem_url:{
+     nome_derivacao:{
+       type: String,
+       required: true,
+     }
+    ,imagem_url:{
         type: String,
         required: true,
     },
     saldo:{
       type: Number,
       required: true,
+    }, 
+    composicao:{
+      type: String,
+      required: true, 
+    },
+    agrupamento:{
+      type: String,
+      required: true,  
     }
 }, 
 {

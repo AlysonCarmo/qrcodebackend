@@ -8,9 +8,12 @@ class ProductController{
         const product = await Product.create({
             codigo: req.body.codigo,
             nome: req.body.nome,
-            derivacao: req.body.derivacao, 
+            derivacao: req.body.derivacao,
+            nome_derivacao: req.body.nome_derivacao, 
             imagem_url: req.body.url,
-            saldo: req.body.saldo 
+            saldo: req.body.saldo,
+            composicao: req.body.composicao,
+            agrupamento: req.body.agrupamento,
             }); 
 
         // retorna a requisião com um produto utilizando json 
@@ -34,7 +37,10 @@ class ProductController{
               _id: '$codigo', // Group By Expression
               'nome':  {$first :'$nome'} ,
               'codigo':  {$first :'$codigo'} ,
+              'composicao':  {$first :'$composicao'} ,
+              'agrupamento':  {$first :'$agrupamento'} ,
               'saldo': { $sum : '$saldo' },
+              count: { $sum: 1 },
             },
             
         }]);
