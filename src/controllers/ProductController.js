@@ -39,11 +39,18 @@ class ProductController{
               'codigo':  {$first :'$codigo'} ,
               'composicao':  {$first :'$composicao'} ,
               'agrupamento':  {$first :'$agrupamento'} ,
+              'files': {$first : '$files'},
               'saldo': { $sum : '$saldo' },
               count: { $sum: 1 },
-            },
-            
-        }]);
+            },},
+            {$lookup:
+            {
+                from:'files',
+                localField:'files',
+                foreignField: '_id',
+                as: 'file'
+            },}
+        ]);
 
         return res.json(products);
     }
