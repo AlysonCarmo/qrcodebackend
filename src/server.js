@@ -15,14 +15,16 @@ app.use(cors());
 
 
 const server =  require("http").Server(app);
-const io = require("socket.io")(server);
+//const io = require("socket.io")(server);
 
 // criando socket para trabalhar com realtime no projeto
+/*
 io.on("connection", socket =>{
     socket.on('connectRoom', box =>{
         socket.join(box);
     })
 })
+*/
 
 //conectando ao banco de dados MongoDB
 mogoose.connect("mongodb+srv://ada:ada@cluster0-hk2bz.mongodb.net/product?retryWrites=true",{
@@ -39,7 +41,7 @@ app.use((req, res, next) =>{
 app.use(express.urlencoded({extended:true}));
 
 //permite que ao acessar a rota files, acesse os arquivos da do diretorio tmp
-//app.use('/files', express.static(path.resolve(__dirname,"..", "tmp")));
+app.use('/files', express.static(path.resolve(__dirname,"..", "tmp")));
 
 // importando o arquivos de rotas(routes.js)
 app.use(require('./routes'));

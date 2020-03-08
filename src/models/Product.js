@@ -33,7 +33,8 @@ const Product = new mongoose.Schema({
     agrupamento:{
       type: String,
       required: true,  
-    }
+    },
+    files:[{type: mongoose.Schema.Types.ObjectId, ref:"File"}] // Criando o relacionamento com o Schema(Tabela) File
 }, 
 {
    timestamps:true,
@@ -41,12 +42,8 @@ const Product = new mongoose.Schema({
    toJSON: {virtuals: true}
 
 });
-/*
-File.virtual("url").get(function(){
-    const url = process.env.URL || 'http://localhost:3333';
-    return `${url}/files/${encodeURIComponent(this.path)}`;
-})
 
-*/
+
+
 
 module.exports = mongoose.model('Product', Product);
