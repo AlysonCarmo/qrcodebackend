@@ -31,11 +31,12 @@ mogoose.connect("mongodb+srv://ada:ada@cluster0-hk2bz.mongodb.net/product?retryW
     useNewUrlParser:true
 });
 
-
+/*
 app.use((req, res, next) =>{
     req.io = io;
     return next()
 })
+*/
 
 // definindo que o server recebe arquivos
 app.use(express.urlencoded({extended:true}));
