@@ -11,9 +11,16 @@ class ProductController{
             derivacao: req.body.derivacao,
             nome_derivacao: req.body.nome_derivacao, 
             imagem_url: req.body.url,
-            saldo: req.body.saldo,
+            saldo_p: req.body.saldo_p,
             composicao: req.body.composicao,
             agrupamento: req.body.agrupamento,
+            unidade_medida: req.body.unidade_medida,
+            preco_atacado: req.body.preco_atacado,
+            preco_corte: req.body.preco_corte,
+            peca: req.body.peca,
+            gramatura: req.body.gramatura,
+            saldo_i: req.body.saldo_i,
+            files: req.body.files,
             }); 
 
         // retorna a requisião com um produto utilizando json 
@@ -40,7 +47,13 @@ class ProductController{
               'composicao':  {$first :'$composicao'} ,
               'agrupamento':  {$first :'$agrupamento'} ,
               'files': {$first : '$files'},
-              'saldo': { $sum : '$saldo' },
+              'saldo_p': { $sum : '$saldo_p' },
+              'unidade_medida':  {$first :'$unidade_medida'} ,
+              'preco_atacado':  {$first :'$preco_atacado'} ,
+              'preco_corte':  {$first :'$preco_corte'} ,
+              'peca':  {$first :'$peca'} ,
+              'gramatura':  {$first :'$gramatura'} ,
+              'saldo_i': { $sum : '$saldo_i' },
               count: { $sum: 1 },
             },},
             {$lookup:

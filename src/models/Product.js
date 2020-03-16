@@ -22,14 +22,38 @@ const Product = new mongoose.Schema({
         type: String,
         required: true,
     },
-    saldo:{
+    saldo_i:{
       type: Number,
       required: true,
-    }, 
+    },
+    saldo_p:{
+      type: Number,
+      required: true,
+    },  
     composicao:{
       type: String,
       required: true, 
     },
+    gramatura:{
+      type: String,
+      required: true, 
+    },
+    peca:{
+      type: Number,
+      required: true, 
+    },
+    unidade_medida:{
+      type: String,
+      required: true, 
+    },
+    preco_atacado:{
+      type: Number,
+      required: true,
+    }, 
+    preco_corte:{
+      type: Number,
+      required: true,
+    },  
     agrupamento:{
       type: String,
       required: true,  
