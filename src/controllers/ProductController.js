@@ -38,7 +38,13 @@ class ProductController{
         const filter = req.body.filter.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
 
         const products = await Product.aggregate([
-            { $match : { $or: [{'nome' : new RegExp(filter, "i")}, {'codigo' : new RegExp(filter, "i")} ] } },
+            { $match : { $or: [
+                {'nome' : new RegExp(filter, "i")},
+                {'codigo' : new RegExp(filter, "i")},
+                {'composicao' : new RegExp(filter, "i")},
+                {'agrupamento' : new RegExp(filter, "i")}, 
+            ] 
+        } },
             { $group:
             {
               _id: '$codigo', // Group By Expression
